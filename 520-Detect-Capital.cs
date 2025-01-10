@@ -2,17 +2,24 @@ public class Solution
 {
     public bool DetectCapitalUse(string word)
     {
-        if (char.IsUpper(word[0]) && word.Substring(1) == word.Substring(1).ToLower())
+        int len = word.Length;
+        int upperCount = 0;
+
+        foreach(char ch in word)
+        {
+            if (char.IsUpper(ch))
+                upperCount++;
+        }
+
+        if(upperCount == len || upperCount == 0 || (word[0] >= 'A' && word[0] <= 'Z' && upperCount == 1))
+        {
             return true;
-
-        if (word.ToUpper() == word)
-            return true;
-
-        if (word.ToLower() == word)
-            return true;
-
-
+        }
 
         return false;
+
+
+
+       
     }
 }
