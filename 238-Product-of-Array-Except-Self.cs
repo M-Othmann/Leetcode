@@ -2,32 +2,26 @@ public class Solution
 {
     public int[] ProductExceptSelf(int[] nums)
     {
-        int l_multi = 1;
-        int r_multi = 1;
+        int len = nums.Length;
+        int[] res = new int[len];
 
-        int n = nums.Length;
-        int[] l_arr = [];
-        int[] r_arr = [];
-        int[] res = [];
+        int prefix = 1;
 
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < len; i++)
         {
-            int j = -i - 1;
-            l_arr[i] = l_multi;
-            r_arr[j] = r_multi;
-
-            l_multi *= nums[i];
-            r_multi *= nums[j];
-             
+            res[i] = prefix;
+            prefix *= nums[i];
         }
 
-        foreach(int l in l_arr)
+
+        int postfix = 1;
+        for(int i = len -1; i>= 0; i--)
         {
-            foreach(int r in r_arr)
-            {
-                res.Append(l * r);
-            }
+            res[i] *= postfix;
+            postfix *= nums[i];
+     
         }
+
         return res;
     }
 }
